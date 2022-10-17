@@ -1,6 +1,8 @@
 const fs = require('fs');
 const fastify = require('fastify')({ logger: true });
 
+const port = process.env.PORT || 3000;
+
 fastify.register(require('fastify-cors'), {});
 
 fastify.get('/', async (request, reply) => {
@@ -23,7 +25,7 @@ fastify.get('/', async (request, reply) => {
 
 const start = async () => {
   try {
-    await fastify.listen(3000);
+    await fastify.listen(port);
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
